@@ -1,8 +1,12 @@
 <template>
   <q-page class="flex flex-center"><h1 >
       Gdje nas možete naći
-    </h1></q-page>
+    </h1>
+    
+ 
+  </q-page>
   <q-page padding>
+    
     <div id="map" style="height:500px;"></div>
   </q-page>
 </template>

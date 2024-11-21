@@ -3,7 +3,11 @@
     <h1>Registrirajte se</h1>
     <br>
     <div class="q-pa-md" style="max-width: 400px">
-
+      <div>
+      <h4>
+        Ova stranica služi za registraciju
+      </h4>
+    </div>
 <q-form
   @submit="onSubmit"
   @reset="onReset"

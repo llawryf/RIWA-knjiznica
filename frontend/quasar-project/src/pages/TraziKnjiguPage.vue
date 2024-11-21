@@ -2,6 +2,12 @@
   <div class="q-pa-md">
     <h3>Tražilica</h3>
 
+    <div>
+      <h4>
+        Ova stranica služi za pretrazivanje knjiga
+      </h4>
+    </div>
+
     <div class="q-pa-md">
       <div class="q-gutter-md" style="max-width: 300px">
         <q-input

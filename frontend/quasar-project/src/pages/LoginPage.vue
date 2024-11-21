@@ -2,7 +2,11 @@
   <q-page padding>
     <h1>Prijavite se</h1>
     <div class="q-pa-md" style="max-width: 400px">
-
+    <div>
+      <h4>
+        Ova stranica služi za prijavu
+      </h4>
+    </div>
 <q-form
   @submit="onSubmit"
   @reset="onReset"

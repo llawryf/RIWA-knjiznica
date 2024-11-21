@@ -2,6 +2,11 @@
   <q-page class="flex flex-center"><h1 style="margin-bottom: 2rem;">
       O nama
     </h1></q-page>
+    <q-page class="flex flex-center">
+      <h4 style="margin-top: 1rem;">
+        ovdje možete pronaći informacije o knjiznici
+      </h4>
+    </q-page>
   <q-page padding>
     <q-card dark bordered class="bg-grey-9 my-card">
 <q-card-section>
