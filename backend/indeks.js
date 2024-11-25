@@ -96,7 +96,7 @@ app.get("/api/stanjeSlobodnihKnjiga/", (req, res) => {
   });
 });
 
-//broj slobodni knjiga
+//knjige koje imaju manje od 3 primjerka
 app.get("/api/knjigeManjeod3/", (req, res) => {
   connection.query("SELECT * FROM knjiga WHERE stanje<3;", (error, results) => {
     if (error) throw error;
