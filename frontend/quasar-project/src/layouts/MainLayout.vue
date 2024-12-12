@@ -95,6 +95,18 @@ const linksList = [  //izbornik
     caption: 'registracija',
     icon: 'person_add',
     link: '#/registracija'
+  },
+  {
+    title: 'Baza',
+    caption: 'baza',
+    icon: 'database',
+    link: '#/baza'
+  },
+  {
+    title: 'Rezrvirane knjige',
+    caption: 'rezervirane knjige',
+    icon: 'database',
+    link: '#/rezKnjige'
   }
 ]
 
