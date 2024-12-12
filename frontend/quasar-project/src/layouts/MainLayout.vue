@@ -99,13 +99,13 @@ const linksList = [  //izbornik
   {
     title: 'Baza',
     caption: 'baza',
-    icon: 'database',
+    icon: 'dataset',
     link: '#/baza'
   },
   {
-    title: 'Rezrvirane knjige',
+    title: 'Rezervirane knjige',
     caption: 'rezervirane knjige',
-    icon: 'database',
+    icon: 'library_add_check',
     link: '#/rezKnjige'
   }
 ]

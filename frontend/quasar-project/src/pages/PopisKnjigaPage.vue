@@ -83,41 +83,33 @@ const columns = [
 const rows = [
   {
     id:'1',
-    naslov: 'Pride and Prejudice',
-    autor: 'Jane Austen',
-    opis: 'Pride and Prejudice follows the turbulent relationship between Elizabeth Bennet, the daughter of a country gentleman, and Fitzwilliam Darcy, a rich aristocratic landowner.',
+    naslov: 'Funny Story',
+    autor: 'Emily Henry',
+    opis: 'The romance novel follows librarian Daphne and Miles, whose exes are dating each other. ',
     slika: 'https://cdn.thestorygraph.com/w0ej4okqipva0xu2jclwfp0xmfdo.jpg',
     stanje: '4'
   },
   {
     id:'2',
-    naslov: 'The Catcher in the Rye',
-    autor: 'J. D. Salinger',
-    opis: 'The Catcher in the Rye is an all-time classic in coming-of-age literature- an elegy to teenage alienation, capturing the deeply human need for connection ',
+    naslov: 'The Lord of the Rings',
+    autor: 'J. R. R. Tolkien',
+    opis: 'A modest hobbit is entrusted with the task of destroying a powerful ring. ',
     slika: 'https://m.media-amazon.com/images/I/7125+5E40JL._SL1500_.jpg',
     stanje: '5'
   },
   {
     id:'3',
-    naslov: 'Brave New World',
-    autor: 'Aldous Huxley',
-    opis: 'Brave New World is a searching vision of an unequal, technologically-advanced future where humans are genetically bred, socially indoctrinated, and pharmaceutically anesthetized to passively uphold an authoritarian ruling order–all at the cost of our freedom, full humanity, and perhaps also our souls.',
+    naslov: 'Harry Potter and the Order of the Phoenix',
+    autor: 'J.K. Rowling',
+    opis: 'In his fifth year at Hogwart\'s, Harry faces challenges at every turn.',
     slika: 'https://m.media-amazon.com/images/I/81BXnTqH7-L._SL1500_.jpg',
     stanje: '2'
   },
   {
     id:'4',
-    naslov: 'The Odyssey',
-    autor: 'Homer',
-    opis: 'Odyssey, epic poem in 24 books traditionally attributed to the ancient Greek poet Homer. The poem is the story of Odysseus, king of Ithaca, who wanders for 10 years (although the action of the poem covers only the final six weeks) trying to get home after the Trojan War.',
-    slika: 'https://m.media-amazon.com/images/I/71DUtMXVRuL._SL1490_.jpg',
-    stanje: '6'
-  },
-  {
-    id:'5',
-    naslov: 'Crime and Punishment',
-    autor: 'Fyodor Dostoevsky',
-    opis: 'First published in 1866, Crime and Punishment is the excruciatingly-detailed psycho-epic about the murder of a pawn shop owner (and her sister). ',
+    naslov: 'Diary of a Wimpy Kid: Hard Luck',
+    autor: 'Jeff Kinney ',
+    opis: 'His best friend, Rowley Jefferson, has ditched him, and finding new friends in middle school.',
     slika: 'https://m.media-amazon.com/images/I/71DUtMXVRuL._SL1490_.jpg',
     stanje: '2'
   },

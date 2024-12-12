@@ -67,15 +67,7 @@ const style2 = {
 };
 
 const columns = [
-  {
-    name: 'id',
-    label: 'ID',
-    field: 'id',
-    align: 'left',
-    sortable: true,
-    style: style1,
-    headerStyle: style2,
-  },
+
   {
     name: 'naslov',
     label: 'Naslov',
@@ -93,19 +85,27 @@ const columns = [
     style: style1,
     headerStyle: style2,
   },
- 
+
   {
-    name: 'datum_rezervacije',
+    name: 'datum_rez',
     label: 'Datum rezervacije',
-    field: 'datum_rezervacije',
+    field: 'datum_rez',
     align: 'center',
     style: style1,
     headerStyle: style2,
   },
   {
-    name: 'status',
-    label: 'Status',
-    field: 'status',
+    name: 'ime',
+    label: 'Ime',
+    field: 'ime',
+    align: 'center',
+    style: style1,
+    headerStyle: style2,
+  },
+  {
+    name: 'prezime',
+    label: 'Prezime',
+    field: 'prezime',
     align: 'center',
     style: style1,
     headerStyle: style2,
@@ -114,16 +114,17 @@ const columns = [
 
 export default {
   setup() {
-    const reservedBooks = ref([]);  
+    const reservedBooks = ref([]);
     const pagination = ref({
       rowsPerPage: 10,
     });
 
     const loadReservedBooks = async () => {
       try {
-        
-        const result = await axios.get(`http://localhost:3000/api/rezervirane-knjige/2`); 
+
+        const result = await axios.get(`http://localhost:3000/api/rezervirane_knjige/2`);
         if (Array.isArray(result.data)) {
+          console.log(result.data);
           reservedBooks.value = result.data;
         } else {
           console.error('API response is not in the expected format:', result.data);
