@@ -70,7 +70,7 @@ connection.connect(function(err) {
     console.log("Server running at port: " + port);
 });
 
-
+/*
   
   app.post("/api/rezerv_knjige", (req, res) => {
     const data = req.body;
@@ -243,3 +243,4 @@ app.get("/api/slobodniPrimjerci/:id_knjige", (req, res) => {
   });
 });
 
+*/
