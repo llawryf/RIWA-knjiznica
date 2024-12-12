@@ -14,7 +14,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const connection = mysql.createConnection({
-    host: 'student.veleri.hr',
+    host: 'ucka.veleri.hr',
     user: 'lcelcner',
     password: '11',
     database: 'lcelcner'
@@ -68,7 +68,7 @@ connection.connect(function(err) {
 
   app.get("/api/rezervirane_knjige/:id_korisnik", (req, res) => {
     const id_korisnik= req.params.id_korisnik;
-    connection.query("SELECT naslov,autor, rezervacija.korisnik,rezervacija.datum_rez FROM knjiga, rezervacija, korisnik WHERE knjiga.id=rezervacija.knjiga and korisnik.id=rezervacija.korisnik AND korisnik.id=?", id_korisnik,(error, results) => {
+    connection.query("SELECT knjiga.id,naslov,autor, korisnik.ime,korisnik.prezime,rezervacija.datum_rez FROM knjiga, rezervacija, korisnik WHERE knjiga.id=rezervacija.knjiga and korisnik.id=rezervacija.korisnik AND korisnik.id=?", id_korisnik,(error, results) => {
       if (error) throw error;
       res.send(results);
     });
