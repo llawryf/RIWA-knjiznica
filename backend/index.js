@@ -8,6 +8,7 @@ const port = 3000;
 
 // Parser za JSON podatke
 app.use(bodyParser.json());
+app.use(cors());
 
 // Parser za podatke iz formi
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -19,7 +20,6 @@ const connection = mysql.createConnection({
     database: 'lcelcner'
   });
 
-
   
 app.use(express.urlencoded({ extended: true }));
   
@@ -30,7 +30,7 @@ connection.connect(function(err) {
 
   app.get("/api/knjige", (req, res) => {
  //req  - slanje zahtjeva s klijentske strane, res - slanje odgovora sa serverske strane
-   connection.query("SELECT naslov, autor FROM knjiga", (error, results) => {
+   connection.query("SELECT * FROM knjiga", (error, results) => {
       if (error) throw error;
       res.send(results);
     });
@@ -66,6 +66,14 @@ connection.connect(function(err) {
    // res.send("poslano"+data.id_knjiga);
   });
 
+  app.get("/api/rezervirane_knjige/:id_korisnik", (req, res) => {
+    const id_korisnik= req.params.id_korisnik;
+    connection.query("SELECT naslov,autor, rezervacija.korisnik,rezervacija.datum_rez FROM knjiga, rezervacija, korisnik WHERE knjiga.id=rezervacija.knjiga and korisnik.id=rezervacija.korisnik AND korisnik.id=?", id_korisnik,(error, results) => {
+      if (error) throw error;
+      res.send(results);
+    });
+  });
+
   app.listen(port, () => {
     console.log("Server running at port: " + port);
 });
@@ -83,7 +91,7 @@ connection.connect(function(err) {
 
 
   app.get("/api/rezerv_knjige/:id_korisnik", (req, res) => {
-    connection.query("SELECT * FROM knjiga, rezervacija, korisnik WHERE knjiga.id=rezervacija.knjiga and korisnik.id=rezervacija.korisnik AND korisnik.id=id_korisnik", (error, results) => {
+    connection.query("SELECT naslov,autor, korisnik,rezervacija.datum_rez FROM knjiga, rezervacija, korisnik WHERE knjiga.id=rezervacija.knjiga and korisnik.id=rezervacija.korisnik AND korisnik.id=id_korisnik", (error, results) => {
       if (error) throw error;
       res.send(results);
     });
