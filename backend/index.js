@@ -6,11 +6,11 @@ const mysql = require("mysql");
 const app = express();
 const port = 3000;
 
-// Parser za JSON podatke
+
 app.use(bodyParser.json());
 app.use(cors());
 
-// Parser za podatke iz formi
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const connection = mysql.createConnection({
@@ -54,7 +54,15 @@ connection.connect(function(err) {
   //  res.send("jedna knjiga "+id);
   });*/
 
-
+  app.post("/api/unos_knjige", (req, res) => {
+    const data = req.body;
+    knjiga = [[data.naslov,data.autor, data.opis,data.stanje,data.slika]]
+   connection.query("INSERT INTO knjiga (naslov, autor, opis,stanje,slika) VALUES ?", [knjiga], (error, results) => {
+      if (error) throw error;
+      res.send(results);
+    });
+   // res.send("poslano"+data.id_knjiga);
+  });
 
   app.post("/api/rezerv_knjige", (req, res) => {
     const data = req.body;
