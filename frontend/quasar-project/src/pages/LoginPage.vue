@@ -14,29 +14,26 @@
 >
   <q-input
     filled
-    v-model="name"
-    label="Your name *"
-    hint="Name and surname"
+    v-model="username"
+    label="Your username *"
+    hint="username"
     lazy-rules
     :rules="[ val => val && val.length > 0 || 'Please type something']"
   />
 
   <q-input
     filled
-    type="number"
-    v-model="age"
-    label="Your age *"
+
+    v-model="password"
+    label="Your password"
     lazy-rules
-    :rules="[
-      val => val !== null && val !== '' || 'Please type your age',
-      val => val > 0 && val < 100 || 'Please type a real age'
-    ]"
+    :rules="[ val => val && val.length > 0 || 'Please type something']"
   />
 
- 
+
 
   <div>
-    <q-btn label="Submit" type="submit" color="primary"/>
+    <q-btn label="Submit" type="submit" color="primary" @click="loginUser"/>
     <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
   </div>
 </q-form>
@@ -46,47 +43,80 @@
 </template>
 
 <script>
-import { useQuasar } from 'quasar'
-import { ref } from 'vue'
+import { useQuasar } from "quasar";
+import { ref } from "vue";
+import axios from "axios";
+import { useRouter } from "vue-router";
 
 export default {
-  setup () {
-    const $q = useQuasar()
+  setup() {
+    const $q = useQuasar();
+    const router = useRouter();
 
-    const name = ref(null)
-    const age = ref(null)
-    const accept = ref(false)
+    const username = ref(null);
+    const password = ref(null);
+
+    const loginUser = async (username, password) => {
+      try {
+        const response = await axios.post("http://localhost:3000/api/login", {
+          username,
+          password,
+        });
+
+        if (response.data.success) {
+          $q.notify({
+            color: "green-4",
+            textColor: "white",
+            icon: "cloud_done",
+            message: "Login successful! Redirecting...",
+          });
+
+          router.push("/user");
+        } else {
+          $q.notify({
+            color: "red-5",
+            textColor: "white",
+            icon: "warning",
+            message: "Invalid username or password. Please try again.",
+          });
+        }
+      } catch (error) {
+        console.error("Error during login:", error.response || error.message);
+        $q.notify({
+          color: "red-5",
+          textColor: "white",
+          icon: "error",
+          message: "Login failed. Please try again later.",
+        });
+      }
+    };
+
+    const onSubmit = async () => {
+      if (!username.value || !password.value) {
+        $q.notify({
+          color: "red-5",
+          textColor: "white",
+          icon: "warning",
+          message: "All fields are required for logging in, please fill them up.",
+        });
+        return;
+      }
+
+      await loginUser(username.value, password.value);
+    };
+
+    const onReset = () => {
+      username.value = null;
+      password.value = null;
+    };
 
     return {
-      name,
-      age,
-      accept,
-
-      onSubmit () {
-        if (accept.value !== true) {
-          $q.notify({
-            color: 'red-5',
-            textColor: 'white',
-            icon: 'warning',
-            message: 'You need to accept the license and terms first'
-          })
-        }
-        else {
-          $q.notify({
-            color: 'green-4',
-            textColor: 'white',
-            icon: 'cloud_done',
-            message: 'Submitted'
-          })
-        }
-      },
-
-      onReset () {
-        name.value = null
-        age.value = null
-        accept.value = false
-      }
-    }
-  }
-}
+      username,
+      password,
+      onSubmit,
+      onReset,
+    };
+  },
+};
 </script>
+

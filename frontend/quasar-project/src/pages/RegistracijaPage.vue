@@ -24,10 +24,19 @@
 
   <q-input
     filled
-    
+
     v-model="surname"
     label="Your surname *"
      hint="surname"
+    lazy-rules
+    :rules="[ val => val && val.length > 0 || 'Please type something']"
+  />
+
+  <q-input
+    filled
+    v-model="mail"
+    label="Your email *"
+    hint="mail"
     lazy-rules
     :rules="[ val => val && val.length > 0 || 'Please type something']"
   />
@@ -50,10 +59,10 @@
     :rules="[ val => val && val.length > 0 || 'Please type something']"
   />
 
-  
+
 
   <div>
-    <q-btn label="Submit" type="submit" color="primary"/>
+    <q-btn label="Submit" type="submit" color="primary"  @click="insert()"/>
     <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
   </div>
 </q-form>
@@ -63,8 +72,10 @@
 </template>
 
 <script>
+
+import axios from 'axios'
 import { useQuasar } from 'quasar'
-import { ref } from 'vue'
+import { ref,onMounted } from 'vue'
 
 export default {
 setup () {
@@ -74,22 +85,22 @@ const name = ref(null)
 const surname = ref(null)
 const username = ref(null)
 const password = ref(null)
-const accept = ref(false)
+const mail=ref(null)
 
 return {
   name,
   surname,
-  accept,
+  mail,
   username,
   password,
 
   onSubmit () {
-    if (accept.value !== true) {
+    if (!name.value|| !surname.value|| !username.value|| !password.value|| !mail.value) {
       $q.notify({
         color: 'red-5',
         textColor: 'white',
         icon: 'warning',
-        message: 'You need to accept the license and terms first'
+        message: 'All fields are required , please fill them out.'
       })
     }
     else {
@@ -107,9 +118,31 @@ return {
     surname.value = null
     username.value = null
     password.value = null
-    accept.value = false
+    mail.value = null
   }
+
 }
+},
+methods:{
+  async insertUser(){
+    const userData={
+      "ime":this.name,
+      "prezime":this.surname,
+      "korime":this.username,
+      "lozinka":this.password,
+      "mail":this.mail
+    }
+    await axios.post('http://localhost:3000/api/registracija_kor', userData)
+    .then(result=>{
+      console.log(result.data)
+    })
+    .catch(error=>{
+      console.log(error)
+    })
+  }
+},
 }
-}
+
+
+
 </script>

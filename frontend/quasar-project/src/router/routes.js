@@ -21,10 +21,24 @@ const routes = [
       { path: '', component: () => import('pages/AdminPage.vue') },
       { path: '/admin/popisKnjiga', component: () => import('pages/PopisKnjigaPage.vue') },
       { path: '/admin/pretrazivanje', component: () => import('pages/TraziKnjiguPage.vue') },
-      { path: '/admin/popis_korisnika', component: () => import('pages/PopisKorisnikaPage.vue') },      
+      { path: '/admin/popis_korisnika', component: () => import('pages/PopisKorisnikaPage.vue') },
       { path: '/admin/unos_knjiga', component: () => import('pages/UnosKnjigaPage.vue') },
       { path: '/logout', component: () => import('pages/LogoutPage.vue') }
-      
+
+    ]
+  },
+  {
+    path: '/user',
+    component: () => import('layouts/UserLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/UserPage.vue') },
+      { path: '/user/popisKnjiga', component: () => import('pages/PopisKnjigaPage.vue') },
+      { path: '/user/pretrazivanje', component: () => import('pages/TraziKnjiguPage.vue') },
+
+      { path: '/user/login', component: () => import('pages/LoginPage.vue') },
+      { path: '/user/registracija', component: () => import('pages/RegistracijaPage.vue') },
+      { path: '/user/baza', component: () => import('pages/PopisKnjigaBazaPage.vue') },
+      { path: '/user/rezKnjige', component: () => import('pages/RezerviraneKnjige.vue') }
     ]
   },
 

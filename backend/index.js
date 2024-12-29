@@ -71,8 +71,10 @@ connection.connect(function(err) {
       if (error) throw error;
       res.send(results);
     });
-   // res.send("poslano"+data.id_knjiga);
+   // res.send("poslano"+data.id_knjiga);   
   });
+
+
 
   app.get("/api/rezervirane_knjige/:id_korisnik", (req, res) => {
     const id_korisnik= req.params.id_korisnik;
@@ -80,6 +82,38 @@ connection.connect(function(err) {
       if (error) throw error;
       res.send(results);
     });
+  });
+
+  
+  app.post("/api/registracija_kor",(req,res)=>{
+    const data=req.body;
+    unosK=[[data.ime, data.prezime,data.korime,data.lozinka,data.mail]]
+    connection.query("INSERT INTO korisnik (ime,prezime,korime,lozinka,mail) values ?",[unosK],(error,results)=>{
+      if(error) throw error;
+      res.send(results);
+    })
+  })
+
+  app.post("/api/login", (req, res) => {
+    const { username, password } = req.body;
+  
+    // Query to check if the user exists
+    connection.query(
+      "SELECT * FROM korisnik WHERE korime = ? AND lozinka = ?",
+      [username, password],
+      (error, results) => {
+        if (error) {
+          res.status(500).json({ success: false, message: "Database error" });
+          return;
+        }
+  
+        if (results.length > 0) {
+          res.json({ success: true, user: results[0] });
+        } else {
+          res.json({ success: false, message: "Invalid credentials" });
+        }
+      }
+    );
   });
 
   app.listen(port, () => {

@@ -124,7 +124,7 @@ export default {
 
         const result = await axios.get(`http://localhost:3000/api/rezervirane_knjige/2`);
         if (Array.isArray(result.data)) {
-          console.log(result.data);
+        //  console.log(result.data);
           reservedBooks.value = result.data;
         } else {
           console.error('API response is not in the expected format:', result.data);
